@@ -1,0 +1,81 @@
+/*
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Parisienne', cursive;
+*/
+
+h1{
+    font-family: 'Parisienne', cursive;
+    font-size: 5rem;
+}
+body{
+    font-family: 'Josefin Sans', sans-serif;
+}
+.titulo{
+    height: 250px;
+    display: flex;
+    align-items: center;
+}
+.cards{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+}
+.btnAgregar{
+    background-color: #b8b09c;
+    border-radius: 20px;
+    color: #fff;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: 30px;
+    border-color: #b8b09c;
+}
+button.btnAgregar:hover{
+    border-color: #b8b09c;
+    background-color: #fff;
+    color:#b8b09c;
+}
+.imgCard{
+    margin: 5px;
+}
+.tarjetas{
+    height: 600px;
+    
+}
+.imgCarrito{
+    margin: 5px;
+}
+.tituloCarrito{
+    font-family: 'Parisienne', cursive;
+    font-size: 2rem;
+}
+.targetaCarrito{
+    display: flex;
+   align-items: center;
+}
+.precioTotal{
+    text-align: center;
+}
+.btnCarrito{
+    background-color: #b8b09c;
+    border-radius: 20px;
+    color: #fff;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: 30px;
+    border-color: #b8b09c;
+}
+button.btnCarrito:hover{
+    border-color: #b8b09c;
+    background-color: #fff;
+    color:#b8b09c;
+}
+.btnDelete{
+    background-color: #E79F9C;
+    border-radius: 20px;
+    color: #fff;
+}
+button.btnDelete:hover{
+    border-color: #E79F9C;
+    color: #E79F9C;
+    background-color: #fff;
+}
