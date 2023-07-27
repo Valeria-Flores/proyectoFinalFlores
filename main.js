@@ -194,6 +194,48 @@ function añadirCarrito(producto){
 
  btnFin.addEventListener("click", ()=>{
    finCompra(productosCarrito);
- })
+ });
+
+ function finCompra(array){
+   Swal.fire({
+      title: '¿Deseas finalizar la compra?',
+      text: "Se enviara a tu correo la información de pago y facturación.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#b8b09c',
+      cancelButtonColor: '#E79F9C',
+      confirmButtonText: 'Terminar compra',
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+         Swal.fire({
+            title: 'Correo electronico',
+            input: 'email',
+            inputLabel: 'Favor de ingresar su dirección de correo electronico para enviarle los datos de pago y facturación.',
+            inputPlaceholder: 'Ingrese su correo electronico',
+            confirmButtonColor:"#b8b09c",
+          }).then((result)=>{
+            if(result.isConfirmed){
+               Swal.fire({
+                  icon:"success",
+                  title:"Compra realizada",
+                  text:`La información de pago y pasos a seguir se ha enviado con éxito.`,
+                  confirmButtonColor:"#b8b09c"
+               })
+            }
+          })
+          productosCarrito=[];
+          localStorage.removeItem("carrito")
+      }else{
+         Swal.fire({
+            icon: 'error',
+            title: 'Compra no realizada',
+            text: 'La compra no ha sido realizada, sus productos permaneceran en el carrito.',
+            confirmButtonColor:"#b8b09c",
+            timer:2000
+          })
+      }
+    })
+ }
 
 
