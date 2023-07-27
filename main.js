@@ -35,11 +35,12 @@ if(localStorage.getItem("productos")){
 console.log(productos);
 
 /* DOM */
-let modalCarrito = document.getElementById("modalCarrito")
-let btnCarrito = document.getElementById("btnCarrito")
-let precio = document.getElementById("precio")
-let orden = document.getElementById("orden")
-let catalogoDiv = document.getElementById("muebles")
+let modalCarrito = document.getElementById("modalCarrito");
+let btnCarrito = document.getElementById("btnCarrito");
+let precio = document.getElementById("precio");
+let orden = document.getElementById("orden");
+let catalogoDiv = document.getElementById("muebles");
+let btnFin = document.getElementById("btnFin");
 
 
 /* Carrito */
@@ -87,6 +88,17 @@ function añadirCarrito(producto){
     }else{
        producto.cantidad+=1;
     }
+    Toastify({
+      text: "Producto agregado al carrito",
+      duration: 1000,
+      gravity: "bottom", 
+      position: "right", 
+      stopOnFocus: true, 
+      style: {
+        background: "linear-gradient(to right, #9CB8A2, #9CB8B0)",
+      },
+      onClick: function(){} 
+    }).showToast();
  }
 
  function añadirProductos(array){
@@ -121,6 +133,17 @@ function añadirCarrito(producto){
          let posicion = array.indexOf(eliminarProd);
          array.splice(posicion,1);
          localStorage.setItem("carrito", JSON.stringify(array))
+         Toastify({
+            text: "Producto eliminado",
+            duration: 1000,
+            gravity: "bottom", 
+            position: "center", 
+            stopOnFocus: true, 
+            style: {
+              background: "linear-gradient(to right, #B8A39C, #B8AA9C)",
+            },
+            onClick: function(){} 
+          }).showToast();
       });
       precioTotal(array);
     })
@@ -165,5 +188,12 @@ function añadirCarrito(producto){
        break
     }
  });
+
+ /* Finalizar compra */
+
+
+ btnFin.addEventListener("click", ()=>{
+   finCompra(productosCarrito);
+ })
 
 
