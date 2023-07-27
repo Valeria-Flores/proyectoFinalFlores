@@ -41,6 +41,8 @@ let precio = document.getElementById("precio");
 let orden = document.getElementById("orden");
 let catalogoDiv = document.getElementById("muebles");
 let btnFin = document.getElementById("btnFin");
+let loader = document.getElementById("loader")
+let loaderTexto = document.getElementById("loaderTexto")
 
 
 /* Carrito */
@@ -77,7 +79,7 @@ function btnCatalogo(array){
    }
  
  }
- btnCatalogo(productos);
+ //btnCatalogo(productos);
 
 /* Añadir elementos al carrito */
 function añadirCarrito(producto){
@@ -239,4 +241,9 @@ function añadirCarrito(producto){
     })
  }
 
-
+/* TimeOut */
+setTimeout(()=>{
+   loaderTexto.innerText = `Conoce nuestros productos`
+   loader.remove()
+   btnCatalogo(productos)
+},1000)
