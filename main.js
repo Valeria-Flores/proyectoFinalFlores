@@ -25,7 +25,7 @@ const cargarCatalogo = async () =>{
 
 /* Array del catalogo */
 let productos = []; 
- 
+
 // Añadir productos al catalogo
 if(localStorage.getItem("productos")){
     productos = JSON.parse(localStorage.getItem("productos"));
@@ -53,6 +53,7 @@ if(localStorage.getItem("carrito")){
    productosCarrito = [];
    localStorage.setItem("carrito", productosCarrito);
 }
+precioTotal(productosCarrito);
 
 function btnCatalogo(array){
     catalogoDiv.innerHTML = ``
@@ -211,6 +212,7 @@ function añadirCarrito(producto){
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
+         
          Swal.fire({
             title: 'Correo electronico',
             input: 'email',
@@ -229,6 +231,7 @@ function añadirCarrito(producto){
           })
           productosCarrito=[];
           localStorage.removeItem("carrito")
+          precioTotal(productosCarrito);
       }else{
          Swal.fire({
             icon: 'error',
