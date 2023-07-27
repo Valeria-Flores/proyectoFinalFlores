@@ -133,6 +133,7 @@ function añadirCarrito(producto){
          let posicion = array.indexOf(eliminarProd);
          array.splice(posicion,1);
          localStorage.setItem("carrito", JSON.stringify(array))
+         precioTotal(array);
          Toastify({
             text: "Producto eliminado",
             duration: 1000,
@@ -156,7 +157,7 @@ function añadirCarrito(producto){
     let iva=subtotal*.16;
     let total=subtotal+iva;
     total == 0 ? precio.innerHTML= `No hay productos en el carrito` : precio.innerHTML = `El total es <strong>${total}</strong>`
- 
+    return total;
  }
 
  btnCarrito.addEventListener("click", () => {
