@@ -93,3 +93,25 @@ button.btnCancel:hover{
     background-color: #fff;
     color:#C3C3C3;
 }
+.btnMenos{
+    border-radius: 15px;
+    border-color: #E79F9C;
+    background-color: #fff;
+    color:#E79F9C;
+}
+button.btnMenos:hover{
+    background-color: #E79F9C;
+    color: #fff;
+    border-color: #E79F9C;
+}
+.btnMas{
+    border-radius: 15px;
+    border-color: #9CB8A2;
+    background-color: #fff;
+    color:#9CB8A2;
+}
+button.btnMas:hover{
+    background-color: #9CB8A2;
+    color: #fff;
+    border-color: #9CB8A2;
+}

@@ -8,7 +8,14 @@ class Producto{
         this.imagen = imagen;
         this.cantidad=parseInt(cantidad);
     }
-
+    añadir(){
+      this.cantidad = this.cantidad + 1;
+      return this.cantidad;
+  }
+  restar(){
+      this.cantidad = this.cantidad - 1;
+      return this.cantidad;
+  }
 }
 
 /* Petición */
@@ -55,7 +62,7 @@ if(localStorage.getItem("carrito")){
 }
 precioTotal(productosCarrito);
 
-function btnCatalogo(array){
+function renderizarCatalogo(array){
     catalogoDiv.innerHTML = ``
    for(let producto of array ){
       let agregarProducto = document.createElement("div")
@@ -80,7 +87,6 @@ function btnCatalogo(array){
    }
  
  }
- //btnCatalogo(productos);
 
 /* Añadir elementos al carrito */
 function añadirCarrito(producto){
@@ -89,7 +95,7 @@ function añadirCarrito(producto){
        productosCarrito.push(producto);
        localStorage.setItem("carrito", JSON.stringify(productosCarrito))
     }else{
-       producto.cantidad+=1;
+       producto.añadir();
     }
     Toastify({
       text: "Producto agregado al carrito",
@@ -115,20 +121,46 @@ function añadirCarrito(producto){
                   </div>
                   <div class="col-md-8">
                      <div class="card-body">
-                         <h5 class="card-title">${muebleCarrito.nombre}</h5>
-                          <p class="card-text">$${muebleCarrito.precio}</p> 
-                          <p class="card-text">Cantidad: ${muebleCarrito.cantidad}</p> 
+                         <h5 class="card-title">${muebleCarrito.nombre}</h5>                          
+                          <p class="card-text">Precio unitario $${muebleCarrito.precio}</p>
+                          <button class= "btn btnMenos" id="btnSumar${muebleCarrito.id}"><i class=""></i>- 1</button>
+                          <text class="card-text">Cantidad: <strong>${muebleCarrito.cantidad}</strong></text>
+                          <button class= "btn btnMas" id="btnBorrarU${muebleCarrito.id}"><i class=""></i>+ 1</button> 
+                          <p></p>
+                          <p class="card-text">SubTotal: ${muebleCarrito.cantidad * muebleCarrito.precio}</p>   
                           <button class= "btn btnDelete" id="eliminarBtn${muebleCarrito.id}"><i class="fas fa-trash-alt"></i></button>
                      </div>
                   </div>    
              </div>
              </div>
-       
     `
-    
     })
-
     array.forEach((muebleCarrito)=>{
+       //Sumar una unidad
+       document.getElementById(`btnSumar${muebleCarrito.id}`).addEventListener("click", () =>{
+         muebleCarrito.añadir()
+         localStorage.setItem("carrito", JSON.stringify(array))
+         añadirProductos(array)
+      })
+      //EVENTO PARA RESTAR UNA UNIDAD
+      document.getElementById(`btnBorrarU${muebleCarrito.id}`).addEventListener("click", ()=>{
+         let cantProd = muebleCarrito.restar()
+         if(cantProd < 1){
+            let cardProducto = document.getElementById(`muebleCarrito${muebleCarrito.id}`)
+            cardProducto.remove()
+            let productoEliminar = array.find((mueble) => mueble.id == muebleCarrito.id)
+            let posicion = array.indexOf(productoEliminar)
+            array.splice(posicion,1)
+            localStorage.setItem("carrito", JSON.stringify(array))
+            precioTotal(array)
+            }
+            else{
+                localStorage.setItem("carrito", JSON.stringify(array))
+            }
+         
+         añadirProductos(array)
+      })
+      // Eliminar todo el producto
       document.getElementById(`eliminarBtn${muebleCarrito.id}`).addEventListener("click", () => {
          let mueble = document.getElementById(`muebleCarrito${muebleCarrito.id}`);
          mueble.remove();
@@ -156,7 +188,7 @@ function añadirCarrito(producto){
  }
 
  function precioTotal(array){
-    let subtotal = array.reduce((acc, muebleCarrito)=> acc + muebleCarrito.precio , 0);
+    let subtotal = array.reduce((acc, muebleCarrito)=> acc + (muebleCarrito.precio*muebleCarrito.cantidad) , 0);
     let iva=subtotal*.16;
     let total=subtotal+iva;
     total == 0 ? precio.innerHTML= `No hay productos en el carrito` : precio.innerHTML = `El total es <strong>${total}</strong>`
@@ -171,13 +203,13 @@ function añadirCarrito(producto){
  function ordenMenor(array){
     const menorMayor = [].concat(array)
     menorMayor.sort((a,b) => a.precio - b.precio)
-    btnCatalogo(menorMayor)
+    renderizarCatalogo(menorMayor)
   }
   
   function ordenMayor(array){
     const mayorMenor = [].concat(array)
     mayorMenor.sort((elem1 ,elem2) => elem2.precio - elem1.precio)
-    btnCatalogo(mayorMenor)
+    renderizarCatalogo(mayorMenor)
   }
   orden.addEventListener("change", () => {
     switch(orden.value){
@@ -248,5 +280,5 @@ function añadirCarrito(producto){
 setTimeout(()=>{
    loaderTexto.innerText = `Conoce nuestros productos`
    loader.remove()
-   btnCatalogo(productos)
+   renderizarCatalogo(productos)
 },1000)
