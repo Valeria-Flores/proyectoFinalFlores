@@ -95,7 +95,7 @@ function añadirCarrito(producto){
        productosCarrito.push(producto);
        localStorage.setItem("carrito", JSON.stringify(productosCarrito))
     }else{
-       producto.añadir();
+      producto.cantidad+=1;
     }
     Toastify({
       text: "Producto agregado al carrito",
@@ -123,9 +123,9 @@ function añadirCarrito(producto){
                      <div class="card-body">
                          <h5 class="card-title">${muebleCarrito.nombre}</h5>                          
                           <p class="card-text">Precio unitario $${muebleCarrito.precio}</p>
-                          <button class= "btn btnMenos" id="btnSumar${muebleCarrito.id}"><i class=""></i>- 1</button>
+                          <button class= "btn btnMenos" id="btnBorrarU${muebleCarrito.id}"><i class=""></i>- 1</button>
                           <text class="card-text">Cantidad: <strong>${muebleCarrito.cantidad}</strong></text>
-                          <button class= "btn btnMas" id="btnBorrarU${muebleCarrito.id}"><i class=""></i>+ 1</button> 
+                          <button class= "btn btnMas" id="btnSumar${muebleCarrito.id}"><i class=""></i>+ 1</button> 
                           <p></p>
                           <p class="card-text">SubTotal: ${muebleCarrito.cantidad * muebleCarrito.precio}</p>   
                           <button class= "btn btnDelete" id="eliminarBtn${muebleCarrito.id}"><i class="fas fa-trash-alt"></i></button>
@@ -248,7 +248,7 @@ function añadirCarrito(producto){
          Swal.fire({
             title: 'Correo electronico',
             input: 'email',
-            inputLabel: 'Favor de ingresar su dirección de correo electronico para enviarle los datos de pago y facturación.',
+            text: 'Favor de ingresar su dirección de correo electronico para enviarle los datos de pago y facturación.',
             inputPlaceholder: 'Ingrese su correo electronico',
             confirmButtonColor:"#b8b09c",
           }).then((result)=>{
