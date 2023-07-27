@@ -1,0 +1,75 @@
+[
+    {
+        "id":1,
+        "nombre":"Mesa de comedor",
+        "descripcion":"Mesa de comedor de elegante y robusta, con un acabado en madera que le brinda calidez y versatilidad para adaptarse a cualquier estilo de decoración.",
+        "precio":3000,
+        "imagen":"mesacomedor.webp",
+        "cantidad":1
+
+    },
+    {
+        "id":2,
+        "nombre":"Escritorio",
+        "descripcion":"El escritorio blanco presenta líneas limpias y modernas, con amplio espacio de trabajo, compartimentos de almacenamiento integrados y una superficie resistente, perfecto para crear un ambiente funcional y organizado en cualquier oficina o estudio.",
+        "precio":1500,
+        "imagen":"escritorio.webp",
+        "cantidad":1
+    },
+    {
+        "id":3,
+        "nombre":"Cama individual",
+        "descripcion":"La base de cama individual ofrece un diseño contemporáneo y elegante, con una estructura sólida y resistente que brinda soporte óptimo, mientras que su tono neutro se adapta fácilmente a cualquier estilo de dormitorio.",
+        "precio":3000,
+        "imagen":"camaind.webp",
+        "cantidad":1
+    },
+    {
+        "id":4,
+        "nombre":"Cama matrimonial",
+        "descripcion":"La base de cama matrimonial combina funcionalidad y estilo, con un diseño moderno, una estructura robusta y un tono suave que aporta luminosidad y tranquilidad al espacio de descanso.",
+        "precio":5000,
+        "imagen":"camamat.webp",
+        "cantidad":1
+    },
+    {
+        "id":5,
+        "nombre":"Set de sillas",
+        "descripcion":"El set de 4 sillas blancas para comedor combina un diseño moderno y minimalista con la comodidad y durabilidad de su estructura ergonómica, brindando un toque de elegancia y luminosidad a cualquier espacio.",
+        "precio":3000,
+        "imagen":"silla.webp",
+        "cantidad":1
+    },
+    {
+        "id":6,
+        "nombre":"Set de bancos",
+        "descripcion":"El set de 4 bancos cuenta con un diseño moderno y minimalista, asientos cómodos y una estructura duradera, ofreciendo una solución versátil y elegante para completar el mobiliario de cualquier bar o cocina.",
+        "precio":2250,
+        "imagen":"banco.webp",
+        "cantidad":1
+    },
+    {
+        "id":7,
+        "nombre":"Librero",
+        "descripcion":"El librero blanco presenta un diseño contemporáneo y funcional, con estantes ajustables para adaptarse a diferentes tamaños de libros y objetos decorativos, brindando organización y estilo a cualquier espacio de almacenamiento.",
+        "precio":4800,
+        "imagen":"librero.webp",
+        "cantidad":1
+    },
+    {
+        "id":8,
+        "nombre":"Buró",
+        "descripcion":"El buró combina belleza y funcionalidad con su diseño elegante y acabado en madera, ofreciendo espacio de almacenamiento con cajones espaciosos y una superficie resistente, ideal para complementar cualquier dormitorio con estilo y practicidad.",
+        "precio":1600,
+        "imagen":"buro.webp",
+        "cantidad":1
+    },
+    {
+        "id":9,
+        "nombre":"Armario",
+        "descripcion":"El armario blanco presenta un diseño clásico y atemporal, con amplio espacio de almacenamiento, estantes ajustables y un elegante acabado en blanco que se adapta a cualquier estilo de decoración, proporcionando organización y estilo a cualquier habitación.",
+        "precio":5000,
+        "imagen":"armario.webp",
+        "cantidad":1
+    }
+]
