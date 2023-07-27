@@ -8,17 +8,21 @@ class Producto{
         this.imagen = imagen;
         this.cantidad=parseInt(cantidad);
     }
+
+    // Añadir unidad
     añadir(){
       this.cantidad = this.cantidad + 1;
       return this.cantidad;
-  }
-  restar(){
-      this.cantidad = this.cantidad - 1;
-      return this.cantidad;
-  }
+   }
+
+   // Restar unidad
+   restar(){
+         this.cantidad = this.cantidad - 1;
+         return this.cantidad;
+   }
 }
 
-/* Petición */
+/* Petición carga de catalogo */
 const cargarCatalogo = async () =>{
    const res = await fetch("muebles.json");
    const data = await res.json();
@@ -39,7 +43,6 @@ if(localStorage.getItem("productos")){
 }else{
     cargarCatalogo();
 }
-console.log(productos);
 
 /* DOM */
 let modalCarrito = document.getElementById("modalCarrito");
@@ -51,7 +54,6 @@ let btnFin = document.getElementById("btnFin");
 let loader = document.getElementById("loader")
 let loaderTexto = document.getElementById("loaderTexto")
 
-
 /* Carrito */
 let productosCarrito;
 if(localStorage.getItem("carrito")){
@@ -62,6 +64,7 @@ if(localStorage.getItem("carrito")){
 }
 precioTotal(productosCarrito);
 
+// Mostrar catalogo
 function renderizarCatalogo(array){
     catalogoDiv.innerHTML = ``
    for(let producto of array ){
@@ -136,13 +139,14 @@ function añadirCarrito(producto){
     `
     })
     array.forEach((muebleCarrito)=>{
-       //Sumar una unidad
+       // Sumar una unidad
        document.getElementById(`btnSumar${muebleCarrito.id}`).addEventListener("click", () =>{
          muebleCarrito.añadir()
          localStorage.setItem("carrito", JSON.stringify(array))
          añadirProductos(array)
       })
-      //EVENTO PARA RESTAR UNA UNIDAD
+
+      // Restar una unidad
       document.getElementById(`btnBorrarU${muebleCarrito.id}`).addEventListener("click", ()=>{
          let cantProd = muebleCarrito.restar()
          if(cantProd < 1){
@@ -160,6 +164,7 @@ function añadirCarrito(producto){
          
          añadirProductos(array)
       })
+
       // Eliminar todo el producto
       document.getElementById(`eliminarBtn${muebleCarrito.id}`).addEventListener("click", () => {
          let mueble = document.getElementById(`muebleCarrito${muebleCarrito.id}`);
@@ -182,11 +187,10 @@ function añadirCarrito(producto){
           }).showToast();
       });
       precioTotal(array);
-    })
-
-    
+    }) 
  }
 
+ // Calcular precio total 
  function precioTotal(array){
     let subtotal = array.reduce((acc, muebleCarrito)=> acc + (muebleCarrito.precio*muebleCarrito.cantidad) , 0);
     let iva=subtotal*.16;
@@ -199,7 +203,7 @@ function añadirCarrito(producto){
    añadirProductos(productosCarrito);
  })
 
- /* Orden */
+ /* Ordenar productos  */
  function ordenMenor(array){
     const menorMayor = [].concat(array)
     menorMayor.sort((a,b) => a.precio - b.precio)
@@ -226,13 +230,12 @@ function añadirCarrito(producto){
  });
 
  /* Finalizar compra */
-
-
  btnFin.addEventListener("click", ()=>{
    finCompra(productosCarrito);
  });
 
  function finCompra(array){
+   // Alerta de confirmación
    Swal.fire({
       title: '¿Deseas finalizar la compra?',
       text: "Se enviara a tu correo la información de pago y facturación.",
@@ -244,7 +247,7 @@ function añadirCarrito(producto){
       cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
-         
+         // Ingreso de correo electronico
          Swal.fire({
             title: 'Correo electronico',
             input: 'email',
@@ -265,6 +268,7 @@ function añadirCarrito(producto){
           localStorage.removeItem("carrito")
           precioTotal(productosCarrito);
       }else{
+         //Alerta de compra no realizada
          Swal.fire({
             icon: 'error',
             title: 'Compra no realizada',
